@@ -1,4 +1,5 @@
-import { ADD_TODO } from './action';
+import { ADD_TODO, TOGGLE_TODO } from './action';
+import { TodoDashboardComponent } from './todo-dashboard/todo-dashboard.component';
 
 
 export interface IAppState {
@@ -19,6 +20,18 @@ export function rootReducer(state: IAppState, action): IAppState {
                 todos: state.todos.concat(newTodo),
                 lastUpdate: new Date()
             });
+        case TOGGLE_TODO:
+            const task = state.todos.find(t => t.id === action.id);
+            const index = state.todos.indexOf(task);
+            return Object.assign({}, state, {
+                todos: [
+                    ...state.todos.slice(0, index),
+                    Object.assign({}, task, {isCompleted: !task.isCompleted}),
+                    ...state.todos.slice(index + 1),
+                ],
+                lastUpdate: new Date()
+            });
+
     }
     return state;
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
 import { IAppState } from '../store';
-import { ADD_TODO } from '../action';
+import { ADD_TODO, TOGGLE_TODO } from '../action';
 
 @Component({
   selector: 'app-todo-list',
@@ -19,6 +19,10 @@ export class TodoListComponent {
     }
     this.ngRedux.dispatch({type: ADD_TODO, title: input.value});
     input.value = '';
+  }
+
+  toggleTodo(task) {
+    this.ngRedux.dispatch({type: TOGGLE_TODO, id: task.id});
   }
 
 }

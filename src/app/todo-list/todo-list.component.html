@@ -3,7 +3,7 @@
 <button (click)="addTodo(title)">Add</button>
 <ul>
     <li *ngFor="let task of todos | async">
-        <span (click)="toggleTodo(task)">{{task.title}}</span>
+        <span (click)="toggleTodo(task)" [class.completed]="task.isCompleted">{{task.title}}</span>
         <button (click)="removeTodo(task)">Remove</button>
     </li>
 </ul>
