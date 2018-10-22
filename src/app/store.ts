@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO } from './action';
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from './action';
 import { TodoDashboardComponent } from './todo-dashboard/todo-dashboard.component';
 
 
@@ -31,7 +31,11 @@ export function rootReducer(state: IAppState, action): IAppState {
                 ],
                 lastUpdate: new Date()
             });
-
+        case REMOVE_TODO:
+            return Object.assign({}, state, {
+                todos: state.todos.filter(t => t.id !== action.id),
+                lastUpdate: new Date()
+            });
     }
     return state;
 }
