@@ -1,0 +1,10 @@
+.partition {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.partition-filled {
+    background: #eee;
+}
